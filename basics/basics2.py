@@ -57,3 +57,55 @@ while True:
         break
     else:
         continue
+
+# List comprehensions
+# Lets say we have a list of numbers, we want to divide each by 10, but dont want to iterate in a regular for loop
+# With list comprehensions, we can define a new var and set its value to a new list while iterating through the
+# original all in one line of code
+tempsForToday = [221, 330, 65, 102]
+
+# instead of iterating with a list, lets create a new list with comprehension
+newTempsForToday = [temp / 10 for temp in tempsForToday]
+print("Todays temps before comprehension: ", tempsForToday)
+print("After comprehension: ", newTempsForToday)
+print()
+
+# List comprehension can also have conditionals in them
+newerTempsForToday = [temp / 10 for temp in tempsForToday if temp < 300]
+print("After comprehension with conditional: ", newerTempsForToday)
+print()
+
+# List comprehension with multiple conditionals (just make sure the for loop syntax is AFTER the if/else)
+evenNewerTemps = [temp / 10 if temp < 300 else 99999 for temp in tempsForToday]
+print("After if/else comprehension: ", evenNewerTemps)
+
+# Functions
+# Functions can take values, or 'keyword arguments'
+# note the following
+# def myFunc(a, b):
+    # return a * b
+
+# to call the above, you can pass values myFunc(4, 5)
+# or you can pass keyword arguments myFunc(a = 4, b = 5)
+# and you can also mix up the order of the keword args as long as they match the function args myFunc(b = 5, a = 4)
+
+# You can also assign default args values
+# def myFunc(a = 4, b = 5):
+    # return a * b
+
+# then call with or without args myFunc()  or   myFunc(4)   or myFunc(b = 3)
+
+# REMEMBER - you cannot have a non-default arg in a function before a default arg
+# def myFunc(a, b = 5) ERROR
+
+# Indefinite number of args (average function for example)
+# def myFunc(*whatever):
+  # return sume(whatever) / len(whatever)
+
+# Indefinite number of keyword arguments (2 asterisk instead of 1)
+# def myFunc(**whatever):
+    # return whatever
+
+# print(myFunc(arg1 = 1, arg2 = 2, arg3 = 3)) --- in this case the myFunc will return a dictionary of
+# arg names and their values { arg1: 1, arg2: 2, arg3: 3}
+

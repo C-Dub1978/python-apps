@@ -1,0 +1,15 @@
+Python ships with built in modules. When checking dir(__builtins__), you may not see
+certain functionality that you need, so in order to check the different system modules,
+which you would need to import into your scripts, use (while in the interpreter)
+
+import sys
+sys.builtin_module_names
+
+one example is the time module - to see its methods, use
+
+import time
+dir(time)
+
+We wont have everything we need from python builtin modules, so we can also use 3rd party
+modules
+
