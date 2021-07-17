@@ -16,5 +16,6 @@ try:
   cursorclass=pymysql.cursors.DictCursor
   )
   print('Successfully connected to db')
+  #initApp(connect)
 except Exception as e:
   print('Error connecting to db')
