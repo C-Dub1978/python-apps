@@ -5,7 +5,6 @@ import os
 
 file = os.path.abspath('../files/data.json')
 dictionaryData = json.load(open(file))
-print(dictionaryData['USA'][0])
 
 def lookup(key):
   if key.upper() in dictionaryData:

@@ -13,3 +13,9 @@ dir(time)
 We wont have everything we need from python builtin modules, so we can also use 3rd party
 modules
 
+There is 1 exception to builtin modules - os
+if you do a sys.builtin_module_names, you will NOT see os, but its There
+
+os has lots of functionality, esepcially when dealing with system level needs.....
+if you find your operating systems python3 directory, inside lib folder, there are tons of
+***.py files, all of which are modules.... os is one of them
