@@ -1,4 +1,3 @@
-import threading
 import pymysql
 import pymysql.cursors
 import os
