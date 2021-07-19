@@ -8,11 +8,19 @@ from threading import Thread
 def writeTable(connect):
   with connect:
     with connect.cursor() as cursor:
-      # First, drop table if exists
+      # Drop db schema
+      db = "DROP DATABASE IF EXISTS `dictionary_schema`"
+      cursor.execute(db)
+      # Recreate db schema
+      dbCreate = "CREATE DATABASE `dictionary_schema`"
+      cursor.execute(dbCreate)
+      # Use new schema
+      use = "USE `dictionary_schema`"
+      cursor.execute(use)
+      # Drop table if exists
       drop = "DROP TABLE IF EXISTS `dictionary`"
       cursor.execute(drop)
-      #connect.commit()
-      # Create dictionary table
+      # Create dictionary table`
       create = ("CREATE TABLE `dictionary` ("
       +"`id` int(11) NOT NULL AUTO_INCREMENT,"
       +"`word` varchar(255) COLLATE utf8_bin NOT NULL,"
@@ -51,4 +59,5 @@ try:
   writeTable(connection)
 
 except Exception as e:
-  print('Error connecting to db')
+  print('Error with database operations')
+  print(e)
