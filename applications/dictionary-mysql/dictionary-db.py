@@ -12,7 +12,12 @@ def runInput(searchWord):
   return cursor.fetchall()
 
 def printResults(results):
-  print(results)
+  print(str('\n' + results[0][0].capitalize()) + ': ')
+  count = 1
+  for result in results:
+    formatted = '\n\t{}- {}'.format(count, result[1])
+    print(formatted)
+    count += 1
   print()
 
 def lookup(key):
@@ -32,18 +37,15 @@ def lookup(key):
           foundKey = str(match)
           break
       if caseInsensitive == True:
-        print(foundKey)
         return runInput(foundKey)
       else:
-        confirmation = input('No matches for the word you entered, did you mean: ' + matches[0] + '?\nPress 1 for yes, 2 for no: ')
+        confirmation = input('\nNo matches for the word you entered, did you mean: ' + matches[0] + '?\nPress 1 for yes, 2 for no: ')
         if confirmation == '1':
           return runInput(matches[0])
-        elif confirmation == '2':
-          return 'No matches found'
         else:
-          return 'No matches found'
+          return None
     else:
-      return 'No matches found for the word you entered, please check the spelling and try again'
+      return None
 
 try:
   # Create connection
@@ -63,7 +65,7 @@ try:
     allWords.append(stripped)
 
   while True:
-    word = input('Enter word to search for , or type stop to exit the program: ')
+    word = input('\nEnter word to search for , or type stop to exit the program: ')
     if word.upper() == 'STOP':
       break
     else:
@@ -71,7 +73,8 @@ try:
       if results is not None:
         printResults(results)
       else:
-        print('No results found for that word, please try again.\n')
+        print('\nNo results found for that word, please try again.\n')
 
 except Exception as e:
   print('Error connecting to db, exiting program')
+  print(e)
