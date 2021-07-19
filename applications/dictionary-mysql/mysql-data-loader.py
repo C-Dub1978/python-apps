@@ -36,9 +36,18 @@ def writeTable(connect):
       # Loop through dictionary, and write the word and its meaning to the dictionary table
       for k in data.keys():
         word = k
-        definition = data[word][0]
-        insert = "INSERT INTO dictionary (word, definition) VALUES (%s, %s)"
-        cursor.execute(insert, (word, definition))
+        res = data[word]
+        # A word can be mapped to a list of multiple definitions, if so, write a new db row for
+        # each definition
+        if len(res) > 1:
+          for d in res:
+            insert = "INSERT INTO dictionary (word, definition) VALUES (%s, %s)"
+            cursor.execute(insert, (word, d))
+        # The word only has 1 definition, write 1 row and move on
+        else:
+          definition = data[word][0]
+          insert = "INSERT INTO dictionary (word, definition) VALUES (%s, %s)"
+          cursor.execute(insert, (word, definition))
       connect.commit()
       print('\nSuccess! Dumped json data to dictionary table')
 
